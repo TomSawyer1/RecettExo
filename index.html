@@ -52,23 +52,23 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Temps</th>
+                        <th>Name</th>
+                        <th>Time</th>
                         <th>Ingrédients</th>
                         <th>Préparations</th>
-                        <th>Personnes</th>
+                        <th>People</th>
                         <th>Delete SA!!!!!!!</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="recipe in recipes" :key="recipe.id">
                         <td>{{ recipe.name }}</td>
-                        <td>{{ recipe.time }}</td>
+                        <td>{{ recipe.time }} Minutes</td>
                         <td>{{ recipe.ingredients }}</td>
                         <td>{{ recipe.préparations }}</td>
                         <td>{{ recipe.people }}</td>
                         <td>
-                            <button @click="deleteRecipe(recipe.id)">Supprimer</button>
+                            <button @click="deleteRecipe(recipe.id) " class="bg-red ">Supprimer la recette!</button>
                         </td>
                     
                     </tr>
