@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Recettes</h1>
+        <form @submit.prevent="checkForm">
+            <p v-if="errors.length">
+                <b>Please correct the following error(s):</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </p>
+            <p>
+                <label for="name">Name:</label>
+                <input id="name" v-model="name" type="text" name="name">
+            </p>
+            <p>
+                <label for="time">Time:</label>
+                <input id="time" v-model.number="time" type="number" name="time" min="0">
+            </p>
+            <p>
+                <label for="ingredients">Ingredients:</label>
+                <input id="ingredients" v-model="ingredients" type="text" name="ingredients">
+            </p>
+            <p>
+                <label for="préparations">Préparations:</label>
+                <input id="préparations" v-model="préparations" type="text" name="préparations">
+            </p>
+            <p>
+                <label for="people">People:</label>
+                <input id="people" v-model.number="people" type="number" name="people" min="0">
+            </p>
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+
+        <div v-if="recipes.length">
+            <h2>Recettes existantes :</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Temps</th>
+                        <th>Ingrédients</th>
+                        <th>Préparations</th>
+                        <th>Personnes</th>
+                        <th>Delete SA!!!!!!!</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="recipe in recipes" :key="recipe.id">
+                        <td>{{ recipe.name }}</td>
+                        <td>{{ recipe.time }}</td>
+                        <td>{{ recipe.ingredients }}</td>
+                        <td>{{ recipe.préparations }}</td>
+                        <td>{{ recipe.people }}</td>
+                        <td>
+                            <button @click="deleteRecipe(recipe.id)">Supprimer</button>
+                        </td>
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
